@@ -1,0 +1,86 @@
+MF ::= m [ ]  SMAF  end
+SMAF ::=  SMOF MSOF
+MSOF ::= SMOF  MSOF
+MSOF ::= ''
+SMOF ::= ST
+SMOF ::= F
+ST ::= DS
+ST ::= AS1
+ST ::= AS2
+ST ::= IFST
+ST ::= IOST
+ST ::= FCST ;
+F ::= funct [ PL ] = funid [ PL ] SMAF end ;
+PL ::= TYPE id RL
+TYPE ::= kw_int
+TYPE ::= kw_float
+TYPE ::= kw_string
+TYPE ::= kw_matrix
+RL ::= , TYPE id RL
+RL ::= ''
+DS ::= TYPE VL ;
+VL ::= id MID
+MID ::= , id MID
+MID ::= ''
+AS1 ::= LHSSV = RHST1 ;
+AS2 ::= LHSLV = RHST2 ;
+LHSSV ::= id
+LHSLV ::= [ VL ] 
+RHST1 ::= AE
+RHST1 ::= SE
+RHST1 ::= FCST
+RHST2 ::= SE
+RHST2 ::= FCST
+SE ::= size id
+IFST ::= kw_if ( BE ) ST OST ELSEST
+ELSEST ::= kw_else ST OST endif ;
+ELSEST ::= endif ;
+OST ::= ST OST
+OST ::= ''
+IOST ::= read ( id ) ;
+IOST ::= print ( id ) ;
+FCST ::= funid ( IPL )
+IPL ::= V LV
+IPL ::= ''
+LV ::= , V LV
+LV ::= ''
+AE ::= AT MTO
+MTO ::= OLP AT MTO
+MTO ::= ''
+AT ::= AF MTT
+MTT ::= OHP AF MTT
+MTT ::= ''
+AF ::= ( AE )
+AF ::= V
+OLP ::= +
+OLP ::= -
+OHP ::= *
+OHP ::= /
+BE ::= ( BE ) LOP ( BE )
+BE ::= not ( BE ) 
+BE ::= CV ROP CV
+CV ::= id
+CV ::= int_num
+CV ::= float_num
+V ::= id MATELE
+V ::= int_num
+V ::= float_num
+V ::= str
+V ::= MATRIX
+MATRIX ::= [ ROWS ]
+ROWS ::= ROW MROWS
+MROWS ::= ; ROW MROWS
+MROWS ::= ''
+ROW ::= int_num RCOLELE
+RCOLELE ::= , int_num RCOLELE
+RCOLELE ::= ''
+MATELE ::= [ int_num , int_num ]
+MATELE ::= ''
+LOP ::= AND
+LOP ::= OR
+ROP ::= <
+ROP ::= <=
+ROP ::= ==
+ROP ::= >
+ROP ::= >=
+ROP ::= !=
